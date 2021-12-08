@@ -1,4 +1,4 @@
-from flask import Flask, request,jsonify
+from flask import Flask, request, jsonify
 from deep_translator import GoogleTranslator
 import re
 
@@ -17,10 +17,12 @@ def translate_text():
     else:
         text_array = re.split("<<enter>>", text.replace("\n\n", "\n\n<<enter>>"))
 
-    for paragraph in text_array:
-        output_text = output_text + translator.translate(paragraph)
+    translated_array = translator.translate_batch(text_array)
 
-    response=jsonify(output_text)
+    for paragraph in translated_array:
+        output_text = output_text + paragraph
+
+    response = jsonify(output_text)
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response
 
