@@ -5,10 +5,10 @@ import re
 app = Flask(__name__)
 
 
-@app.route('/', methods=['GET'])
+@app.route('/translate', methods=['POST'])
 def translate_text():
     lang = request.args.get('lang')
-    text = request.args.get('text')
+    text = request.data.decode()
     output_text = ""
     translator = GoogleTranslator(source='auto', target=lang)
 
