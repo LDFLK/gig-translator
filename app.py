@@ -24,9 +24,7 @@ def translate_text():
     for paragraph in translated_array:
         output_text = output_text + paragraph
 
-    response = jsonify(output_text)
-    response.headers.add("Access-Control-Allow-Origin", "*")
-    return response
+    return jsonify(output_text)
 
 
 if __name__ == '__main__':
