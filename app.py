@@ -14,10 +14,7 @@ def translate_text():
     output_text = ""
     translator = GoogleTranslator(source='auto', target=lang)
 
-    if "</p>" in text:
-        text_array = re.split("<<enter>>", text.replace("</p>", "</p><<enter>>"))
-    else:
-        text_array = re.split("<<enter>>", text.replace("\n\n", "\n\n<<enter>>"))
+    text_array = re.split("<<break>>", text.replace(".", ".<<break>>"))
 
     translated_array = translator.translate_batch(text_array)
 
